@@ -1,102 +1,97 @@
 # AAMRA Foundation Website – Automation Testing with Selenium & Mocha
 
-## 📋 Overview
 
-This repository contains the **automation testing suite** for the AAMRA Foundation website, built using **Selenium WebDriver** and **Mocha**. It demonstrates how to:
+# Selenium WebDriver and Mocha Testing Setup
 
-- Install and configure Selenium WebDriver & Mocha in a Node.js project  
-- Write and execute browser-based automation tests  
-- Validate core functionalities: signup, login, password recovery, subscription, profile view, and logout  
+This guide walks you through setting up Selenium WebDriver and Mocha for testing web applications using Node.js.
 
-## 🎯 Purpose
+---
 
-The goal is to ensure the AAMRA Foundation website’s critical user flows work as intended by automating end‑to‑end tests. This provides:
+## 1. Install Selenium WebDriver and Mocha
 
-- **Fast feedback** on regressions  
-- **Repeatable** test execution across environments  
-- **Documentation** of expected behavior for key features  
+### Tools Overview
 
-## 🔧 Prerequisites
+- **Selenium**: A web testing framework used for automating web browsers, commonly used for testing web applications.
+- **Mocha**: A JavaScript test framework that runs on Node.js, designed for testing asynchronous code and often used in unit testing.
 
-- **Node.js** ≥ 14.x  
-- **npm** (bundled with Node.js)  
-- A running instance of the AAMRA Foundation website (local or staging)  
-- Chrome (or another browser; adjust WebDriver accordingly)  
+### Steps
 
-## ⚙️ Installation
+#### Step 1: Create a Test Folder
+Create a new folder for testing purposes. (e.g., create a folder named `test` inside the project directory)
 
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/your-org/amra-foundation-tests.git
-   cd amra-foundation-tests
-   ```
-
-2. **Initialize the test folder** (if not already)  
-   ```bash
-   mkdir test
-   cd test
-   npm init -y
-   ```
-
-3. **Install dependencies**  
-   ```bash
-   npm install selenium-webdriver mocha
-   ```
-
-4. **Verify** that `package.json` lists both `selenium-webdriver` and `mocha` under `dependencies`.
-
-## 🚀 Running the Tests
-
-From the project root (where `package.json` lives):
-
+#### Step 2: Initialize the Folder
+Open the folder in the terminal and run the following command:
 ```bash
-# Run all tests in the 'test' folder
-npx mocha test/**/*.spec.js
+npm init
 ```
+You may optionally fill in fields like description, git repository, etc. This command generates a `package.json` file upon confirmation.
 
-You can also run individual test files:
+#### Step 3: Install Dependencies
 
+Install **Selenium WebDriver**:
 ```bash
-npx mocha test/home.spec.js
-npx mocha test/signup.spec.js
+npm install selenium-webdriver
+```
+Refer to [selenium-webdriver - npm](https://www.npmjs.com/package/selenium-webdriver) for documentation.
+
+Install **Mocha**:
+```bash
+npm install mocha
+```
+Refer to [mocha - npm](https://www.npmjs.com/package/mocha) for documentation.
+
+#### Step 4: Confirm Installation
+Check the `package.json` file. If the dependencies `selenium-webdriver` and `mocha` are listed, the installation is successful.
+
+---
+
+## 2. Test Node.js Project
+
+### Step 1: Start the Project
+
+Open both backend and frontend folders in separate terminals.
+
+- Backend terminal:
+```bash
+npm run start:dev
+```
+- Frontend terminal:
+```bash
+npm run dev
 ```
 
-## 📁 Test Structure
+### Step 2: Identify Elements for Testing
 
+- Open the project in the browser via localhost.
+- Use **Inspect Element** (DevTools) to find IDs of input fields, buttons, and other actionable elements.
+
+### Step 3: Write Test Code
+
+- Write test cases targeting identified elements using Mocha and Selenium WebDriver.
+- Save each test as a `.js` file in the `test` folder (e.g., `home.spec.js`).
+
+### Step 4: Run Tests
+
+Open the terminal in the test folder and run the tests using:
+```bash
+npx mocha filename
+# or
+mocha filename
 ```
-/test
-  ├─ home.spec.js           # Home‑page load and UI elements
-  ├─ signup.spec.js         # Signup positive & negative flows
-  ├─ login.spec.js          # Login positive & negative flows
-  ├─ forget-password.spec.js# Password recovery success & failure
-  ├─ subscribe.spec.js      # Email subscription success & failure
-  ├─ profile.spec.js        # Profile viewing success & failure
-  └─ logout.spec.js         # Logout functionality
-```
 
-Each `*.spec.js` file follows this pattern:
+Replace `filename` with the name of your test file (e.g., `home.spec.js`).
 
-1. **Test metadata** (ID, author, date, priority)  
-2. **Preconditions** (e.g., “user not yet registered”)  
-3. **Test steps** (navigate, input data, click actions)  
-4. **Expected results**  
-5. **Pass/Fail assertion**
+---
 
-## 📊 Test Coverage
+## Notes
 
-| Module            | Scenarios Tested                      | Status       |
-|-------------------|---------------------------------------|--------------|
-| Home Page         | Page load & element presence          | ✅ Pass      |
-| Signup            | Valid signup, invalid age, duplicate  | ✅ / ❌ Mixed |
-| Login             | Correct/incorrect credentials         | ✅ / ❌ Mixed |
-| Forget Password   | Registered/unregistered email         | ✅ / ❌ Mixed |
-| Subscribe         | New/existing subscriber email         | ✅ / ❌ Mixed |
-| Profile           | View profile post-login               | ✅ / ❌ Mixed |
-| Logout            | Session termination                   | ✅ Pass      |
+- Mocha allows testing in different browsers.
+- Testing is fast, flexible, and scalable.
+- Unit testing approach: each page/function is tested separately.
+- For complete testing, combine all test codes into one file and run it.
+- Team collaboration is easier by dividing test cases across members.
 
-> “Mixed” indicates both passing and failing scenarios were automated to verify validation flows.
+---
 
-## 🤝 Acknowledgement
+Happy Testing!
 
-This test suite leverages **Selenium WebDriver** for browser automation and **Mocha** for test orchestration.  
-> **Note:** Misuse for malicious activities (e.g., DDoS) is strictly prohibited and illegal.  
